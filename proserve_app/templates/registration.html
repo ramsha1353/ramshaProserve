@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+{% load bootstrap4 %}
+{% block content %}
+ 
+    <h1> Registration </h1>
+    <br/>
+
+        <form action= {% url "signup"%} method = POST  novalidate>
+            {% csrf_token %}
+            {% comment %} {% bootstrap_form form %} {% endcomment %}
+          
+        {% for form in form %}
+         {{ form.label_tag}} {{form}} {{form.errors|striptags}} <br><br>
+        {% endfor %} 
+            <input type="submit" value ="Submit">
+        </form>
+        {% if messages %}
+        {%for message in messages%}
+        <small {% if message.tags %} class= "{{message.tags}}" 
+            {%endif%}> {{message}}
+        </small>
+        {% endfor %}
+        {%endif%}        
+     {% endblock %}
