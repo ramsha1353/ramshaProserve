@@ -1,0 +1,54 @@
+{% comment %} <!-- proserve_app/templates/base.html -->
+<!DOCTYPE html>
+<html>
+<head>
+    <title>{% block title %} Proserve_app{% endblock %}</title>
+    {% load bootstrap4 %}
+</head>
+<body>
+    <nav class="navbar navbar-expand navbar-light bg-light">
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav">
+                {% comment %} <li class="nav-item">
+                    <a class="nav-link" href="{% url '/sign_up/' %}">Register</a>
+                </li> {% endcomment %}
+                {% comment %} <li class="nav-item">
+                    <a class="nav-link" href="{% url 'login' %}">Login</a>
+                </li> {% endcomment %}
+                {% comment %} <li class="nav-item">
+                    <a class="nav-link" href="{% url 'logout' %}">Logout</a>
+                </li> {% endcomment %}
+                {% comment %} {% if user.is_authenticated %}
+                    {% if user.userprofile.user_type == 'worker' %}
+                        <li class="nav-item">
+                            <a class="nav-link" href="{% url 'worker_profile' user.userprofile.pk %}">Worker Profile</a>
+                        </li>
+                    {% elif user.userprofile.user_type == 'client' %}
+                        <li class="nav-item">
+                            <a class="nav-link" href="{% url 'client_profile' user.userprofile.pk %}">Client Profile</a>
+                        </li>
+                    {% endif %}
+                {% endif %}
+            </ul>
+        </div>
+    </nav>
+    
+    <div class="container">
+        {% block content %}
+        {% endblock %}
+    </div>
+</body>
+</html> {% endcomment %} 
+<!DOCTYPE html>
+<html>
+<head>
+    <title>{% block title %}My Site{% endblock %}</title>
+    {% load bootstrap4 %}
+</head>
+<body>
+    <div class="container">
+        {% block content %}
+        {% endblock %}
+    </div>
+</body>
+</html>

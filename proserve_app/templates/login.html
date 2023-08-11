@@ -1,0 +1,21 @@
+{% block content%}
+<style>
+    .error{ 
+        color:red;
+    } </style>
+<h1> Login </h1>
+    <form action="{% url 'login' %}" method="post" novalidate>
+        {% csrf_token %}
+        {% if form.non_field_errors%}
+        {% for error in form.non_field_errors %}
+       <p class= 'error'> {{error}}</p><br/>
+
+        {% endfor%}
+        {%endif%}
+        {% for form in form %}
+        {{form.label_tag}} {{form}} {{form.errors|striptags}} <br/><br/>
+        {%endfor%}
+        <input type="submit" value="Login" id="login">
+    </form> 
+
+{% endblock content%}

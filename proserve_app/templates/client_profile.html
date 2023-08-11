@@ -1,0 +1,12 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="container mt-5">
+  <h2>welcome {{user_profile}}</h2>
+  <p>Client-specific information goes here.</p>
+
+  <br>
+
+  {{user_profile.Address}}{{user_profile.gender}}
+</div>
+{% endblock %}

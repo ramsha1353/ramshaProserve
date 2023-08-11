@@ -24,3 +24,26 @@ class SignUpForm(UserCreationForm):
             user_profile.user = user
             user_profile.save()
         return user, user_profile
+    
+    
+class worker_profile(UserCreationForm):
+    service = forms.CharField(max_length=100, required=False)
+    description = forms.CharField(widget=forms.Textarea, required=False)
+    price = forms.DecimalField(max_digits=10, decimal_places=2, required=False)
+    price_per_day = forms.DecimalField(max_digits=10, decimal_places=2, required=False)
+    available_time = forms.CharField(max_length=100, required=False)
+
+    class Meta:
+        model = User
+        fields = ['username', 'first_name', 'last_name', 'email']
+        labels = {'email': 'Email'}
+    # def save(self, commit=True):
+    #     user = super(SignUpForm, self).save(commit=False)
+    #     user_profile = UserProfile(Address=self.cleaned_data['Address'], phone_no=self.cleaned_data['phone_no'],
+    #                                 gender=self.cleaned_data['gender'],
+    #                                user_type=self.cleaned_data['user_type'])
+    #     if commit:
+    #         user.save()
+    #         user_profile.user = user
+    #         user_profile.save()
+    #     return user, user_profile

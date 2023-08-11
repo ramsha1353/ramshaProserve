@@ -1,0 +1,13 @@
+
+{% extends "base.html" %}
+
+{% block content %}
+<div class="container mt-5">
+  <h2>Worker Profile</h2>
+  <p>Service: {{ profile.service }}</p>
+  <p>Description: {{ profile.description }}</p>
+  <p>Price: {{ profile.price }}</p>
+  <p>Price per Day: {{ profile.price_per_day }}</p>
+  <p>Available Time: {{ profile.available_time }}</p>
+</div>
+{% endblock %}
