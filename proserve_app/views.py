@@ -150,7 +150,9 @@ def worker_details(request, pk):
 
 def client_profile(request, pk):
     user_profile = get_object_or_404(UserProfile, pk=pk)
-    return render(request, "client_profile.html", {"user_profile": user_profile})
+    workers = WorkerProfile.objects.all()
+    print(workers)
+    return render(request, "client_profile.html", {"user_profile": user_profile, "workers": workers})
 
 
 class CustomLoginView(LoginView):

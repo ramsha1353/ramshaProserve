@@ -1,12 +1,50 @@
 {% extends "base.html" %}
 
-{% block content %}
+
 <div class="container mt-5">
   <h2>welcome {{user_profile}}</h2>
   <p>Client-specific information goes here.</p>
 
-  <br>
+  <!-- client_profile.html -->
+
+
+{% block content %}
+<div class="container mt-5">
+  <h2>Client Profile</h2>
+  <p>Username: {{ user_profile.user.username }}</p>
+  <p>Address: {{ user_profile.Address }}</p>
+  <p>Phone Number: {{ user_profile.phone_no }}</p>
+  
+  <h3>Workers List:</h3>
+  <ul>
+    {% comment %} {% for worker in workers %} {% endcomment %}
+    <li>
+      <p>Service: {{ workers.service }}</p>
+      <p>Description: {{ worker.description }}</p>
+      <p>Experiance: {{ worker.experiance }}</p>
+      <p>Price per Day: {{ worker.price_per_day }}</p>
+      <p>Available Time: {{ worker.available_time }}</p>
+    </li>
+    {% comment %} {% endfor %} {% endcomment %}
+  </ul>
+</div>
+
+<h3>Workers List:</h3>
+<ul>
+  {% for worker in workers %}
+  <li>Worker: 
+    <li>
+      <p>Username: {{ worker.profile.user.username }}</p>
+      <p>Service: {{ worker.service }}</p>
+      <p>Description: {{ worker.description }}</p>
+      <p>Experiance: {{ worker.experiance }}</p>
+      <p>Price per Day: {{ worker.price_per_day }}</p>
+      <p>Available Time: {{ worker.available_time }}</p>
+    </br>
+    </li> 
+  {% endfor %}
+</ul>
+{% endblock %}
 
   {{user_profile.Address}}{{user_profile.gender}}
 </div>
-{% endblock %}
