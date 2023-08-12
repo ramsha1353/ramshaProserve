@@ -10,10 +10,11 @@ urlpatterns = [
     path("login/", views.user_login, name="login"),
     path("profile/", views.profile, name="profile"),
     path('logout/', views.logout_page, name='logout_page'),
+    path('<int:pk>/workerdetails/', views.worker_details, name='worker_details'),
    
     path('clientprofile/', views.client_profile, name='client_profile'),
-    path('profile/worker/<int:pk>/', views.worker_profile, name='worker_profile'),
-    path('profile/client/<int:pk>/', views.client_profile, name='client_profile'),
+    path('worker/<int:pk>/', views.worker_profile, name='worker_profile'),
+    path('client/<int:pk>/', views.client_profile, name='client_profile'),
 
     
 ]
