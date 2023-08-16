@@ -4,6 +4,8 @@
 
 {% block content %}
 <div class="container mt-5">
+    <a href="{% url 'worker_profile' work_profile.profile.pk %}" class="btn btn-primary">Update Profile</a>
+{% comment %} <input type="button" value="Update profile " onclick="location.href='{% url 'worker_profile' worker.profile.pk %}'">   {% endcomment %}
   <h2>Worker Profile</h2>
   <p>Username: {{ username }}</p>
   <p>Service: {{ work_profile.service }}</p>

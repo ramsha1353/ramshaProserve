@@ -4,22 +4,23 @@
  
     <h1> Registration </h1>
     <br/>
-
+    <div class="container p-3 my-3 border">
         <form action= {% url "signup"%} method = POST  novalidate>
-            {% csrf_token %}
-            {% comment %} {% bootstrap_form form %} {% endcomment %}
-          
-        {% for form in form %}
-         {{ form.label_tag}} {{form}} {{form.errors|striptags}} <br><br>
-        {% endfor %} 
+            {% csrf_token %}          
+            {% for form in form %}
+                {{ form.label_tag}} <br/>{{form}} {{form.errors|striptags}} <br><br>
+            {% endfor %} 
             <input type="submit" value ="Submit">
+            <div class="form-group form-button">
+                <input type="submit" onclick="location.href='{% url 'login' %}'"  class= 'already' value="Already have an account">
+            </div>
         </form>
-        {% if message3
-            s %}
-        {%for message in messages%}
-        <small {% if message.tags %} class= "{{message.tags}}" 
-            {%endif%}> {{message}}
-        </small>
-        {% endfor %}
+        {% if messages %}
+            {%for message in messages%}
+                <small {% if message.tags %} class= "{{message.tags}}" 
+                        {%endif%}> {{message}}
+                </small>
+            {% endfor %}
         {%endif%}        
-     {% endblock %}
+            </div>
+{% endblock %}

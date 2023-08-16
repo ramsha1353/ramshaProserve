@@ -10,6 +10,7 @@ from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin
 from .models import UserProfile, WorkerProfile
 from django.contrib.auth.views import LoginView
+from django.db.models import Q
 
 
 def sign_up(request):
@@ -74,8 +75,8 @@ def logout_page(request):
 
    
 def index(request):
-    # return render (request, "registration.html")
-    return HttpResponse('this is index page ')
+    return render (request, "index.html")
+    
 
 def worker_profile(request, pk):
 
@@ -151,7 +152,9 @@ def worker_details(request, pk):
 def client_profile(request, pk):
     user_profile = get_object_or_404(UserProfile, pk=pk)
     workers = WorkerProfile.objects.all()
-    print(workers)
+    search_query = request.GET.get('service_search')
+    if search_query:
+        workers = workers.filter(Q(service__icontains=search_query))
     return render(request, "client_profile.html", {"user_profile": user_profile, "workers": workers})
 
 

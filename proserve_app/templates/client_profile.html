@@ -1,10 +1,6 @@
 {% extends "base.html" %}
 
 
-<div class="container mt-5">
-  <h2>welcome {{user_profile}}</h2>
-  <p>Client-specific information goes here.</p>
-
   <!-- client_profile.html -->
 
 
@@ -15,19 +11,11 @@
   <p>Address: {{ user_profile.Address }}</p>
   <p>Phone Number: {{ user_profile.phone_no }}</p>
   
-  <h3>Workers List:</h3>
-  <ul>
-    {% comment %} {% for worker in workers %} {% endcomment %}
-    <li>
-      <p>Service: {{ workers.service }}</p>
-      <p>Description: {{ worker.description }}</p>
-      <p>Experiance: {{ worker.experiance }}</p>
-      <p>Price per Day: {{ worker.price_per_day }}</p>
-      <p>Available Time: {{ worker.available_time }}</p>
-    </li>
-    {% comment %} {% endfor %} {% endcomment %}
-  </ul>
-</div>
+  <form method="GET" action="{% url 'client_profile' user_profile.pk %}">
+    <label for="service_search">Search by Service:</label>
+    <input type="text" id="service_search" name="service_search" value="{{ request.GET.service_search }}">
+    <button type="submit">Search</button>
+  </form>
 
 <h3>Workers List:</h3>
 <ul>
