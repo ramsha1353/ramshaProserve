@@ -3,7 +3,7 @@ from django.contrib.auth.models import User
 from django.contrib.auth.forms import UserCreationForm
 from .models import UserProfile, WorkerProfile
 class SignUpForm(UserCreationForm):
-    # Address = forms.CharField(max_length=100, required=True)
+    Address = forms.CharField(max_length=100, required=True)
     phone_no = forms.CharField(max_length=20, required=True)
     # experiance = forms.CharField(max_length=100, required=False)
     # gender = forms.ChoiceField(choices=[("male", "Male"), ("female", "Female"), ("other", "Other")], required=True)

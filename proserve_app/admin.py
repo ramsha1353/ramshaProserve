@@ -26,7 +26,7 @@ admin.site.register(User, CustomUserAdmin)
 # Register your models here.
 # @admin.register(UserProfile)
 class UserProfileAdmin(admin.ModelAdmin):
-    list_display = ['user',  'phone_no','user_type']
+    list_display = ['user',  'phone_no','Address','user_type']
 admin.site.register(UserProfile, UserProfileAdmin)
 
 

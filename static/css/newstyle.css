@@ -11,6 +11,7 @@
 body {
 
 background-image: url("/static/images/body.png");
+background-size: 100%;
   font-size: 13px;
   line-height: 1.8;
   color: #222;
@@ -19,10 +20,13 @@ background-image: url("/static/images/body.png");
   font-family: Poppins; }
 
 .container {
+  display: flex;
+  flex-direction: row-reverse;
+  padding: 200px;
   text-align: center;
   padding-top: 40px;
   /* width: 900px; */
-  background: #ffebe3;;
+  /* background: #ffebe3;; */
   margin: 0 auto;
   box-shadow: 0px 15px 16.83px 0.17px rgba(0, 0, 0, 0.05);
   -moz-box-shadow: 0px 15px 16.83px 0.17px rgba(0, 0, 0, 0.05);
@@ -80,13 +84,15 @@ background: #ffebe3; }
 .signup-form, .signup-image, .signin-form, .signin-image {
   /* width: 50%; */
   display: flex;
+  justify-content: center;
+    flex-wrap: wrap;
 
   overflow: hidden; }
 
-.signup-image {
+/* .signup-image {
     display: grid;
     grid-template-rows: 50% 50%;
-  margin: 0 55px; }
+  margin: 0 55px; } */
 
 .form-title {
     text-align: center;
@@ -95,9 +101,11 @@ background: #ffebe3; }
     width: 100%; }
 
 .signup-image {
+  margin-left: 40px;
   margin-top: 45px; }
 
 figure {
+  margin-left: 40px;
   margin-bottom: 50px;
   text-align: center; }
 
