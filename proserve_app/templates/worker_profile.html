@@ -5,7 +5,8 @@
  
     <h1> worker details </h1>
     <br/>
-    
+    {% if error_message %}<p><strong>{{ error_message }}</strong></p>{% endif %}
+  
     <form action="{% url 'worker_profile' user_profile.pk %}" method="post">
       {% csrf_token %}
       

@@ -11,9 +11,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     
 </head>
-<style>
-  
-</style>
 <body>
 {% include 'header.html' %}
 {% block content %}
@@ -28,16 +25,14 @@
         
                            
                             <div  class= 'main_div'>
-                                 <form action= {% url "signup"%} method = POST  novalidate>
+                                 <form action= {% url "signup"%} class="register-form" method = POST  novalidate>
                                      {% csrf_token %}  
                                      <div class="form-group">        
                                     {% for form in form %} 
-                                    <div>{{ form.label_tag}}
-
-                                    </div>
-                                 
-                                     <div>{{form}} {{form.errors|striptags}} </div>  
-                                    </br>  
+                                    {{ form.label_tag}} {{form}}
+                                     </div> 
+                                     <div>{{form.errors|striptags}} </div>  
+            
                                      {% endfor %} 
                                      </div>
                                 
@@ -60,11 +55,7 @@
                         </div>
                         <div class="signup-image">
                             <figure><img src="{% static 'images/index.jpg'%}" alt="sing up image"></figure>
-                            {% comment %} <div class="form-group form-button">
-                                <br/>
-                                <input type="submit" onclick="location.href='{% url 'login' %}'"  class= 'already' value="Already have an account">
-                            </div> {% endcomment %}
-                            {% comment %} <a href="{%url 'login' %}" class="signup-image-link">Already have an account</a> {% endcomment %}
+                            
                         </div>
                                  
                              {% if messages %}

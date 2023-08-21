@@ -13,29 +13,60 @@
         <link rel="stylesheet" href="">
     </head>
     <style>
-        .main{
-            text-align: center;
-            margin: 20% 20% 20% 30%;
+        body {
+            margin: 0; /* Reset default margin */
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh; /* Make sure the container takes at least the full viewport height */
+            background-image: url('images/background.png');
+            background-size: cover;
+            background-repeat: no-repeat;
         }
+    .formsubmit { 
+    border-radius:20%; 
+    background: #0a0803;
+    color: #fff;
+    border: none;
+    width: auto;
+    padding: 15px 39px;
+    border-radius: 5px;
+    -moz-border-radius: 5px;
+    -webkit-border-radius: 5px;
+    -o-border-radius: 5px;
+    -ms-border-radius: 5px;
+   
+    cursor: pointer;
+}
+        .main {
+            
+            flex-grow: 1; /* Allow the main content to grow and take up remaining space */
+        }
+        
         .btn{
             text-align: center;
+            margin: auto;
 
         }
          </style>
     
     <body>
-        <!--[if lt IE 7]>
-            <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="#">upgrade your browser</a> to improve your experience.</p>
-        <![endif]-->
+        {% include 'header.html' %}
+        
         <div class="main">
-        <h1 > Welocome to Proserve App </h1>
-        <h2> Come and let us help you </h2>              
+        <h1>  <strong>Proserve web application </strong></h1>
+        <p> This website make your life easy and simple. <p>              
         <br/>
         
-      <div class= "btn">
-        <input type="button" value="Get Started " onclick="location.href='{% url 'signup' %}'">        {% comment %} <input type="button" value="Become a Client " onclick="location.href='{% url 'signup_client' %}'"> {% endcomment %}
-      </div>
-    </div>
+      
+            <div class="form-group form-button">
+            <input type="button" class="formsubmit"  value="Become a Worker " onclick="location.href='{% url 'signup' %}'"> 
+            <input type="button"class="formsubmit"  value="Hire a Worker " onclick="location.href='{% url 'workerlists' %}'">
+            </div>
+         </div>
+       
+        {% include 'footer.html' %}
+    
         <script src="" async defer></script>
     </body>
+   
 </html>

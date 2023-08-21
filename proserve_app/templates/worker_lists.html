@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+{%load static%} 
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title> Worker Lists</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href={% static 'css/newstyle.css'%}>
+    </head>
+    <style>
+        .errors{
+            color: red; 
+            text-align:center;
+          }
+          .worker-block {
+           margin: auto;
+           margin-top:20px;
+            border: 1px solid #ccc;
+            width : 60%;
+            padding: 15px;
+            margin-bottom: 20px;
+            background-color: #f7f7f7;
+          }
+    </style>
+
+    <body>
+{% include 'header.html' %}
+
+<strong><div class = "errors" id="error-container">
+    {% if error_message %}
+    <p>{{ error_message }}</p>
+    {% endif %}</div></strong>
+  
+
+        {% comment %}  serach by service  {% endcomment %}
+        <div>
+        <form method="GET" action="{% url 'workerlists' %}">
+        <label for="service_search">Search by Service:</label>
+        <input type="text" id="service_search" name="service_search" value="{{ request.GET.service_search }}"> 
+        <button type="submit">Search</button>
+        </form>
+         </div>
+{% comment %} worker lists {% endcomment %}
+        {% for worker in workers %}
+            <div class="worker-block">
+      
+       
+                <p>Username: {{ worker.profile.user.username }}</p>
+                <p>Service: {{ worker.service }}</p>
+                <p>Description: {{ worker.description }}</p>
+                <p>Experience: {{ worker.experience }}</p>
+                <p>Price per Day: {{ worker.price_per_day }}</p>
+                <p>Available Time: {{ worker.available_time }}</p>
+                <p>Phone Number: {{ worker.profile.phone_no }}</p>
+
+            </div>
+
+        {% endfor %}
+
+
+        <script>  var errorContainer = document.getElementById('error-container');
+
+            // Display the error container if it's not hidden
+            if (errorContainer.style.display !== 'none') {
+                // Set a timeout to hide the error container after 3 seconds
+                setTimeout(function() {
+                    errorContainer.style.display = 'none';
+                }, 3000); // 3000 milliseconds = 3 seconds
+            }
+        </script>
+    </body>
+</html>

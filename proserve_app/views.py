@@ -81,7 +81,13 @@ def index(request):
 def worker_profile(request, pk):
 
     user_profile = get_object_or_404(UserProfile, pk=pk)
-    if request.method == 'GET':
+    user_type = user_profile.user_type
+    print(user_type)
+    if user_type == 'customer':
+        return render(request, "worker_lists.html",{
+                      "error_message": "This is a customer id"
+                     } )
+    elif request.method == 'GET':
         return render(request, "worker_profile.html", {"user_profile": user_profile})
     elif request.method == 'POST':
         service = request.POST["service"]
@@ -105,13 +111,15 @@ def worker_profile(request, pk):
       
 def worker_details(request, pk):
    work_profile = get_object_or_404(WorkerProfile, profile__pk=pk)
-   print("Profile ID:", pk)
-   print("UserProfile:", work_profile.profile)
-   print("User:", work_profile.profile.user)
-   print("Username:", work_profile.profile.user.username)
-   username = work_profile.profile.user.username
+   user_type = work_profile.profile.user_type
+   
+   print(user_type)
+   if user_type == 'customer':
+        return render(request, "worker_lists.html",)
+   else:
+       username = work_profile.profile.user.username
    return render(request, "worker_details.html", {"work_profile": work_profile, "username": username})
-
+        
 
 
 def client_profile(request, pk):
@@ -127,6 +135,19 @@ def about(request):
 
 def contactus(request):
     return HttpResponse("this is contact us page")
+
+def workerlists(request):
+    # user_profile = get_object_or_404(UserProfile, pk=pk)
+    workers = WorkerProfile.objects.all()
+    search_query = request.GET.get('service_search')
+    if search_query:
+        workers = workers.filter(Q(service__icontains=search_query))
+    return render(request, "worker_lists.html", { "workers": workers,})
+
+    
+    
+
+
 
 class CustomLoginView(LoginView):
     template_name = 'login.html'
