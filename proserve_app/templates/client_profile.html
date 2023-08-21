@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+{%load static%}
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <link rel="stylesheet" href={% static 'css/newstyle.css'%}>
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Client Profile</title>
+  <style>
+    {% comment %} body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+    }
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 20px;
+    }
+    h2, h3 {
+      margin-top: 0;
+    }
+    label {
+      display: block;
+      margin-bottom: 5px;
+    }
+    input[type="text"] {
+      width: 100%;
+      padding: 8px;
+      border: 1px solid #ccc;
+    }
+    button {
+      padding: 8px 15px;
+      background-color: #007BFF;
+      color: white;
+      border: none;
+      cursor: pointer;
+    }
+    button:hover {
+      background-color: #0056b3;
+    }
+    ul {
+      list-style: none;
+      padding: 0;
+    }
+    li {
+      margin-bottom: 15px;
+    }
+    p {
+      margin: 5px 0;
+    } {% endcomment %}
+   
+  </style>
+</head>
+<body>
+  <section class="signup">
+    <div class="container">
+        <div class="signup-content">
+            <h2 class="form-title">{{ user_profile.user.username }}</h2>
+            <div class="signup-form">
+                <div  class= 'main_div'>
+ 
+   
+    
+                  
+                    <form method="GET" action="{% url 'client_profile' user_profile.pk %}">
+                      <div class="wrap">
+                        <div class="search">
+                          <input type="text" id="service_search" class="searchTerm" name="service_search" value="{{ request.GET.service_search }}" placeholder="Search by Service">
+                          <button type="submit" class="searchButton">
+                            <i class="fa fa-search"></i>
+                          </button>
+                        </div>
+                    </div>
+      {% comment %} <label for="service_search">Search by Service:</label> {% endcomment %}
+
+      {% comment %} <input type="text" id="service_search" name="service_search" value="{{ request.GET.service_search }}">
+      <button type="submit">Search</button> {% endcomment %}
+    </form>
+
+    
+      
+      {% for worker in workers %}
+      <div class="worker-block">
+      
+        <p></p>
+        <p>Username: {{ worker.profile.user.username }}</p>
+        <p>Service: {{ worker.service }}</p>
+        <p>Description: {{ worker.description }}</p>
+        <p>Experience: {{ worker.experience }}</p>
+        <p>Price per Day: {{ worker.price_per_day }}</p>
+        <p>Available Time: {{ worker.available_time }}</p>
+      </div>
+
+      {% endfor %}
+    
+    
+    <p>{{ user_profile.Address }}{{ user_profile.gender }}</p>
+  </div>
+</body>
+</html>
