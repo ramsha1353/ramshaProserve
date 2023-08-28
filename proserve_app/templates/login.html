@@ -1,27 +1,13 @@
-{%load static%}
-<!DOCTYPE html>
-<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
-<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
-<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
-<!--[if gt IE 8]>      <html class="no-js"> <!--<![endif]-->
-<html>
-    <head>
-        <meta charset="utf-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <title></title>
-        <meta name="description" content="">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <link rel="stylesheet" href={% static 'css/newstyle.css'%}>
-        <style>
-            .error{ 
-                color:red;
-            } </style>
-    </head>
-
-    <body>
-       
-        {% include 'header.html' %}
-        {% block content%}
+{% extends 'base.html' %}
+{% load static %}
+{% block page_links %}
+    <link rel="stylesheet" href="{% static 'css/newstyle.css' %}">
+{% endblock %}
+{% block page_title %}
+    Home
+{% endblock %}
+{% block page_body %}
+    {% include "includes/header.html" %}
         <div class="main">
 
             <!-- Sign up form -->
@@ -47,19 +33,14 @@
 
                                 </div>
                                 
-    </form> 
-</div> 
-</div>
-</div>
-</div>
-</section>
-</div>
+                             </form> 
+                        </div> 
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+    {% include 'includes/footer.html' %}
 
 
-{% endblock content%}
-        
-        
-  
-    </body>
-</html>
-
+{% endblock %}

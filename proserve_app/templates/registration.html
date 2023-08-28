@@ -1,17 +1,27 @@
-<!DOCTYPE html>
+{% extends 'base.html' %}
+{% load static %}
+{% block page_links %}
+    <link rel="stylesheet" href="{% static 'css/newstyle.css' %}">
+{% endblock %}
+{% block page_title %}
+    Home
+{% endblock %}
 
-{%load static%}
-<head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>Signup </title>
-    <meta name="description" content="This is the worker sign up page ">
-    {% comment %} <link rel="stylesheet" href={% static 'css/newstyle.css'%}> {% endcomment %}
-  
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    
-</head>
 <style>
+  .form-group {
+    display: flex;
+    align-items: center;
+    margin-bottom: 15px;
+}
+
+.form-label {
+    flex: 1;
+    font-weight: bold;
+}
+
+.form-field {
+    flex: 2;
+}
     /* Apply general styling to the entire form container */
 
     .container {
@@ -29,155 +39,129 @@
         -o-border-radius: 20px;
         -ms-border-radius: 20px;
     }
-.signup-content {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-wrap: wrap;
-}
+    .signup-content {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
 
-/* Style the form container */
-.signup-form {
-  {% comment %} background-color: #f9f9f9; {% endcomment %}
-  padding: 20px;
-  border-radius: 8px;
-  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
-}
+    /* Style the form container */
+    .signup-form {
+      {% comment %} background-color: #f9f9f9; {% endcomment %}
+      padding: 20px;
+      border-radius: 8px;
+      box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
+    }
 
-/* Style the form title */
-.form-title {
-  font-size: 24px;
-  margin-bottom: 20px;
-}
+    /* Style the form title */
+    .form-title {
+      font-size: 24px;
+      margin-bottom: 20px;
+    }
 
-/* Style individual form fields */
-.form-group {
-  margin-bottom: 15px;
-}
+    /* Style individual form fields */
+    .form-group {
+      margin-bottom: 15px;
+    }
 
-/* Style form labels */
-.form-group label {
-  display: block;
-  margin-bottom: 5px;
-  font-weight: bold;
-}
+    /* Style form labels */
+    .form-group label {
+      display: block;
+      margin-bottom: 5px;
+      font-weight: bold;
+    }
 
-/* Style form input fields */
-.form-group input[type="text"],
-.form-group input[type="password"],
-.form-group input[type="email"] {
-  width: 100%;
-  padding: 10px;
-  border: 1px solid #ccc;
-  border-radius: 4px;
-}
+    /* Style form input fields */
+    .form-group input[type="text"],
+    .form-group input[type="password"],
+    .form-group input[type="email"] {
+      width: 100%;
+      padding: 10px;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+    }
 
-/* Style form submit button */
-.form-submit {
-  background-color: #007bff;
-  color: #fff;
-  padding: 10px 20px;
-  border: none;
-  border-radius: 4px;
-  cursor: pointer;
-  transition: background-color 0.3s ease;
-}
+    /* Style form submit button */
+    .form-submit {
+      background-color: #007bff;
+      color: #fff;
+      padding: 10px 20px;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
 
-.form-submit:hover {
-  background-color: #0056b3;
-}
+    .form-submit:hover {
+      background-color: #0056b3;
+    }
 
-/* Style links */
-.term-service,
-.form-submit {
-  color: #007bff;
-  text-decoration: none;
-}
+    /* Style links */
+    .term-service,
+    .form-submit {
+      color: #007bff;
+      text-decoration: none;
+    }
 
-.term-service:hover,
-.form-submit:hover {
-  text-decoration: underline;
-}
-img.fig {
-    height: 300px;
-    width: 400px;
-}
-    {% comment %} .main {
-        margin: 0 auto; /* Center horizontally */
-    text-align: center; {% endcomment %}
-        {% comment %} background: #ffebe3; {% endcomment %}
-        {% comment %} height: auto;
-        width: 80%; {% endcomment %}
-        {% comment %} margin: 40px; {% endcomment %}
-        {% comment %} padding: 10px 40; } {% endcomment %}
-      
-</style>
-<body style>
-{% include 'header.html' %}
-{% block content %}
-{% comment %} <div class="main"> {% endcomment %}
-
-    <!-- Sign up form -->
-    {% comment %} <section class="signup"> {% endcomment %}
-        <div class="container">
-            
-                {% comment %} <div class="signup-image">
-                    <figure><img src="{% static 'images/index.jpg'%}" alt="sing up image" class="fig"></figure> {% endcomment %}
-                    {% comment %} <div class="form-group form-button">
-                        <br/>
-                        <input type="submit" onclick="location.href='{% url 'login' %}'"  class= 'already' value="Already have an account">
-                    </div> {% endcomment %}
-                    {% comment %} <a href="{%url 'login' %}" class="signup-image-link">Already have an account</a> {% endcomment %}
-                {% comment %} </div> {% endcomment %}
-               
-                <div class="signup-form">
-        
-                    <h2 class="form-title">Sign Up</h2>
-                            <div  class= 'main_div'>
-                                 <form action= {% url "signup"%} method = POST  novalidate>
-                                     {% csrf_token %}  
-                                     <div class="form-group">        
-                                    {% for form in form %} 
-                                    {{ form.label_tag}} {{form}}
-                                    {{form.errors|striptags}}  
-                                    
-                                     {% endfor %} 
-                                     </div>
-                                
-                                     
-                                <div class="form-group">
-                                    <input type="checkbox" name="agree-term" id="agree-term" class="agree-term">
-                                    <label for="agree-term" class="label-agree-term"><span><span></span></span>I agree all statements in  <a href="#" class="term-service">Terms of service</a></label>
-                                </div>
-                                <div class="form-group form-button">
-                                    <input type="submit" name="signup" id="signup" class="form-submit" value="Register">
-
-                                    <a class="form-submit" href="{% url 'login' %}">Already have an account</a>
-
-                                </div>
-                                <div class="form-group form-button">
-                                    {% comment %} <input type="submit" onclick="location.href='{% url 'login' %}'"  class= 'already' value="Already have an account"> {% endcomment %}
-                                </div>
-
-                            </form>
-                        </div>
-                       
-                                 
-                             {% if messages %}
-                                 {%for message in messages%}
-                                   <small {% if message.tags %} "{{message.tags}}" 
-                                          {%endif%}> {{message}}
-                                    </small>
-                                 {% endfor %}
-                             {%endif%}       
-                            </div> 
-                </div>
-           
-        </div>
-    {% comment %} </section> {% endcomment %}
-{% comment %} </div> {% endcomment %}
-
-                       
+    .term-service:hover,
+    .form-submit:hover {
+      text-decoration: underline;
+    }
+    img.fig {
+        height: 300px;
+        width: 400px;
+    }
+        {% comment %} .main {
+            margin: 0 auto; /* Center horizontally */
+        text-align: center; {% endcomment %}
+            {% comment %} background: #ffebe3; {% endcomment %}
+            {% comment %} height: auto;
+            width: 80%; {% endcomment %}
+            {% comment %} margin: 40px; {% endcomment %}
+            {% comment %} padding: 10px 40; } {% endcomment %}
           
+</style>
+
+{% block page_body %}
+    {% include "includes/header.html" %}
+
+
+    <div class="container">
+      <div class="signup-form">
+          <h2 class="form-title">Sign Up</h2>
+          <div class="main_div">
+              <form action="{% url 'signup' %}" method="POST" novalidate>
+                  {% csrf_token %}
+                  {% for form in form %}
+                  <div class="form-group">
+                      <label for="{{ form.id_for_label }}" class="form-label">{{ form.label_tag }}</label>
+                      <div class="form-field">
+                          {{ form }}
+                          {{ form.errors|striptags }}
+                      </div>
+                  </div>
+                  {% endfor %}
+                  <div class="form-group">
+                      <input type="checkbox" name="agree-term" id="agree-term" class="agree-term">
+                      <label for="agree-term" class="label-agree-term"><span><span></span></span>I agree all statements in <a href="#" class="term-service">Terms of service</a></label>
+                  </div>
+                  <div class="form-group form-button">
+                      <input type="submit" name="signup" id="signup" class="form-submit" value="Register">
+                      <a class="form-submit" href="{% url 'login' %}">Already have an account</a>
+                  </div>
+              </form>
+          </div>
+          {% if messages %}
+          {% for message in messages %}
+          <small {% if message.tags %} "{{message.tags}}"
+              {% endif %}>{{ message }}</small>
+          {% endfor %}
+          {% endif %}
+      </div>
+  </div>
+                                 
+                            
+
+{% include 'includes/footer.html' %}
 {% endblock %}
-</body>

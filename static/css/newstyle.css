@@ -10,19 +10,19 @@
 
 body {
 
-background-image: url("/static/images/body.png");
+background-image: url("/static/images/background.png");
 background-size: 100%;
   font-size: 13px;
   line-height: 1.8;
   color: #222;
-  /* background: gray; */
+  background: gray; 
   font-weight: 400;
   font-family: Poppins; }
 
 .container {
   display: flex;
   flex-direction: row-reverse;
-  padding: 200px;
+  padding: 250px;
   text-align: center;
   padding-top: 40px;
   /* width: 900px; */
@@ -245,3 +245,95 @@ left: 50%;
 transform: translate(-50%, -50%);
 }
 
+body {
+  margin: 0; /* Reset default margin */
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh; /* Make sure the container takes at least the full viewport height */
+  background-image: url('images/background.png');
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+.formsubmit { 
+border-radius:20%; 
+background: #0a0803;
+color: #fff;
+border: none;
+width: auto;
+padding: 15px 39px;
+border-radius: 5px;
+-moz-border-radius: 5px;
+-webkit-border-radius: 5px;
+-o-border-radius: 5px;
+-ms-border-radius: 5px;
+
+cursor: pointer;
+}
+.main {
+  
+  flex-grow: 1; /* Allow the main content to grow and take up remaining space */
+}
+
+.btn{
+  text-align: center;
+  margin: auto;
+
+}
+.worker-content {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+}
+
+.worker-form {
+  background-color: #f9f9f9;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
+  grid-column: span 1; /* Occupy one column */
+}
+
+.worker-image {
+  grid-column: span 1; /* Occupy one column */
+  text-align: center;
+}
+.errors{
+  color: red; 
+  text-align:center;
+}
+.worker-block {
+ margin: auto;
+ margin-top:20px;
+  border: 1px solid #ccc;
+  width : 60%;
+  padding: 15px;
+  margin-bottom: 20px;
+  background-color: #f7f7f7;
+}
+.form-submit {
+  background: #007bff;
+  color: #fff;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 5px;
+  cursor: pointer;
+}
+.form-group {
+  position: relative;
+}
+.form-group .success {
+  color: green;
+}
+.form-group .error {
+  color: red;
+}
+
+.signup-form {
+  background: #fff;
+  padding: 20px;
+  border-radius: 5px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}

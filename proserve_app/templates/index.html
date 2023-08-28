@@ -1,60 +1,17 @@
-<!DOCTYPE html>
-<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
-<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
-<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
-<!--[if gt IE 8]>      <html class="no-js"> <!--<![endif]-->
-<html>
-    <head>
-        <meta charset="utf-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <title>Home</title>
-        <meta name="description" content="">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <link rel="stylesheet" href="">
-    </head>
-    <style>
-        body {
-            margin: 0; /* Reset default margin */
-            display: flex;
-            flex-direction: column;
-            min-height: 100vh; /* Make sure the container takes at least the full viewport height */
-            background-image: url('images/background.png');
-            background-size: cover;
-            background-repeat: no-repeat;
-        }
-    .formsubmit { 
-    border-radius:20%; 
-    background: #0a0803;
-    color: #fff;
-    border: none;
-    width: auto;
-    padding: 15px 39px;
-    border-radius: 5px;
-    -moz-border-radius: 5px;
-    -webkit-border-radius: 5px;
-    -o-border-radius: 5px;
-    -ms-border-radius: 5px;
-   
-    cursor: pointer;
-}
-        .main {
-            
-            flex-grow: 1; /* Allow the main content to grow and take up remaining space */
-        }
-        
-        .btn{
-            text-align: center;
-            margin: auto;
-
-        }
-         </style>
-    
-    <body>
-        {% include 'header.html' %}
+{% extends 'base.html' %}
+{% load static %}
+{% block page_links %}
+    <link rel="stylesheet" href="{% static 'css/newstyle.css' %}">
+{% endblock %}
+{% block page_title %}
+    Home
+{% endblock %}
+{% block page_body %}
+    {% include "includes/header.html" %}
         
         <div class="main">
         <h1>  <strong>Proserve web application </strong></h1>
-        <p> This website make your life easy and simple. <p>              
+        <p> Lets make your life easy and simple. <p>              
         <br/>
         
       
@@ -64,9 +21,6 @@
             </div>
          </div>
        
-        {% include 'footer.html' %}
-    
-        <script src="" async defer></script>
-    </body>
-   
-</html>
+{% include 'includes/footer.html' %}
+
+{% endblock %}

@@ -3,7 +3,7 @@ from django.contrib.auth.models import User
 
 class UserProfile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
-    Address = models.CharField(max_length=100)
+    Address = models.CharField(max_length=800)
     phone_no = models.CharField(max_length=20)
     user_type = models.CharField(max_length=20)
     
@@ -14,7 +14,7 @@ class UserProfile(models.Model):
 
 
 class WorkerProfile(models.Model):
-    profile = models.OneToOneField(UserProfile, on_delete=models.CASCADE)
+    profile= models.ForeignKey(UserProfile, on_delete=models.CASCADE)
     service = models.CharField(max_length=100)
     description = models.TextField()
     experiance = models.CharField(max_length=100, blank=True)
