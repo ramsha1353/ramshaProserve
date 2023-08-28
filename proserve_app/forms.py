@@ -7,7 +7,7 @@ class SignUpForm(UserCreationForm):
     phone_no = forms.CharField(max_length=20, required=True)
     # experiance = forms.CharField(max_length=100, required=False)
     # gender = forms.ChoiceField(choices=[("male", "Male"), ("female", "Female"), ("other", "Other")], required=True)
-    user_type = forms.ChoiceField(choices=[("worker", "Worker"), ("customer", "Customer")], required=True)
+    user_type = forms.ChoiceField(choices=[("worker", "Worker")], required=True)
 
 
     class Meta:

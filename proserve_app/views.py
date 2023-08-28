@@ -125,6 +125,11 @@ def worker_profile(request, pk):
 
         # return render (request, "index.html")
 
+
+        
+        
+
+        
         
 @login_required(login_url="/index")
 def worker_details(request, pk):

@@ -12,7 +12,7 @@
     {% block content %}
     <div class="worker-content">
         <div class="worker-form">
-            <p>Username: {{ username }}</p>
+            <p>Username: {{ work_profile.profile.username }}</p>
             <br/>
             {% for profile in work_profile %}
             <p>Service: {{ profile.service }}</p>
@@ -25,7 +25,9 @@
 
             {% endfor %}
         </div>
-        {% comment %} <div><a href="{% url 'worker_profile' profile.profile.pk %}" class="btn btn-primary">Update Profile</a></div> {% endcomment %}
+        {% comment %} <div><a href="{% url 'worker_profile' work_profile.profile.pk %}" class="btn btn-primary">Update Profile</a></div> {% endcomment %}
+
+        {% comment %} <div><a href="{% url 'update_worker_profile' user_profile.profile.pk %}" class="btn btn-primary">Update Profile</a></div> {% endcomment %}
 
 
         <div class="worker-image">
