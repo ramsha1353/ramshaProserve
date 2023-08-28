@@ -1,4 +1,6 @@
 {% extends 'base.html' %}
+
+{% comment %} {% extends 'base.html' %}
 {% load static %}
 {% block page_links %}
     <link rel="stylesheet" href="{% static 'css/newstyle.css' %}">
@@ -12,7 +14,7 @@
     {% block content %}
     <div class="worker-content">
         <div class="worker-form">
-            <p>Username: {{ work_profile.profile.username }}</p>
+            <p>Username: {{ user_profile.profile.username }}</p>
             <br/>
             {% for profile in work_profile %}
             <p>Service: {{ profile.service }}</p>
@@ -21,7 +23,7 @@
             <p>Price per Day: Rs.{{ profile.price_per_day }} </p>
             <p>Available Time: {{ profile.available_time }}</p>
             <br>
-          <div><a href="{% url 'worker_profile' profile.profile.pk %}" class="btn btn-primary">Update Profile</a></div>
+          <div><a href="{% url 'worker_profile' profile.profile.pk %}" class="btn btn-primary">Add service </a></div>
 
             {% endfor %}
         </div>
@@ -30,14 +32,78 @@
         {% comment %} <div><a href="{% url 'update_worker_profile' user_profile.profile.pk %}" class="btn btn-primary">Update Profile</a></div> {% endcomment %}
 
 
-        <div class="worker-image">
+        {% comment %} <div class="worker-image">
 
             <figure><img src="{% static 'images/index.jpg'%}" alt="sing up image"></figure>
         </div>
     </div>
     {% endblock %}
     {% include 'includes/footer.html' %}
+{% endblock %} {% endcomment %}
+
+
+
+
+{% load static %}
+{% block page_links %}
+    <link rel="stylesheet" href="{% static 'css/newstyle.css' %}">
 {% endblock %}
+{% block page_title %}
+    Worker Details
+{% endblock %}
+{% block page_body %}
+    {% include "includes/header.html" %}
+
+    {% block content %}
+    <div class="worker-content">
+        <div class="worker-form">
+            <p>Username: {{ user_profile.user.username }}</p>
+            <br/>
+            {% for profile in work_profile %}
+            
+            <p>Service: {{ profile.service }}</p>
+            <p>Description: {{ profile.description }}</p>
+            <p>Phone: {{ user_profile.phone_no }}</p>
+            <p>Price per Day: Rs.{{ profile.price_per_day }} </p>
+            <p>Available Time: {{ profile.available_time }}</p>
+            <br>
+           
+           
+            {% endfor %}
+        </div>
+        <div class="worker-image">
+          <div><a href="{% url 'worker_profile' user_profile.pk %}" class="btn btn-primary">Update Profile</a></div>
+            <figure><img src="{% static 'images/index.jpg'%}" alt="sing up image"></figure>
+        </div>
+    </div>
+    {% endblock %}
+    {% include 'includes/footer.html' %}
+{% endblock %}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 {% comment %} {% extends 'base.html' %}

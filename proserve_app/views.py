@@ -135,11 +135,17 @@ def worker_profile(request, pk):
 def worker_details(request, pk):
     
     # if request.user.is_authenticated:
-  
+    
     user_profile = get_object_or_404(UserProfile, pk=pk)
     work_profile = WorkerProfile.objects.filter(profile=user_profile)
-    username = [profile.profile.user.username for profile in work_profile]
-    return render(request, "worker_details.html", {"work_profile": work_profile, "username": username})
+    return render(request, "worker_details.html", {"user_profile": user_profile, "work_profile": work_profile})
+  
+    # user_profile = get_object_or_404(UserProfile, pk=pk)
+    # work_profile = WorkerProfile.objects.filter(profile=user_profile)
+    # username = [profile.profile.user.username for profile in work_profile]
+    # return render(request, "worker_details.html", {"work_profile": work_profile, "username": username})
+
+
     #     work_profile = WorkerProfile.objects.get(profile=user_profile)
     #     username = work_profile.profile.user.username
     #     return render(request, "worker_details.html", {"work_profile": work_profile, "username": username})
