@@ -14,7 +14,8 @@ urlpatterns = [
     path('logout/', views.user_logout, name='user_logout'),
     
     path('<int:pk>/workerdetails/', views.worker_details, name='worker_details'),
-   
+   path('worker/service/<int:pk>/update/', views.update_worker_service, name='update_worker_service'),
+   path('worker/service/<int:pk>/delete/', views.delete, name='delete'),
     path('clientprofile/', views.client_profile, name='client_profile'),
     path('worker/<int:pk>/', views.worker_profile, name='worker_profile'),
     path('client/<int:pk>/', views.client_profile, name='client_profile'),

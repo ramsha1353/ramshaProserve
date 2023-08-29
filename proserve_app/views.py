@@ -1,5 +1,5 @@
 from django.shortcuts import render, redirect,get_object_or_404
-from django.http import Http404, HttpResponseRedirect,HttpResponse
+from django.http import Http404, HttpResponseRedirect,HttpResponse,HttpResponseForbidden
 from django.urls import reverse
 from .forms import SignUpForm
 from django.contrib import messages
@@ -32,32 +32,61 @@ def sign_up(request):
 # login
 
 def user_login (request):
+
     if request.method == 'POST':
         username = request.POST['username']
         password = request.POST['password']
+        
         user = authenticate(request, username=username, password=password)
-        form = user.userprofile
-        user_type = user.userprofile.user_type
-        print(user_type)
-        if user_type == 'worker':
+        
+        if user is not None:
+            login(request, user)
+            messages.success(request, 'Logged in successfully!')
+            
+            if hasattr(user, 'userprofile'):
+                user_type = user.userprofile.user_type
+
+                if user_type == 'worker':
+                    return HttpResponseRedirect(reverse('worker_details', args=[user.userprofile.pk]))
+                elif user_type == 'customer':
+                    return HttpResponseRedirect(reverse('client_profile', args=[user.userprofile.pk]))
+            else:
+                # Handle the case where the user does not have a userprofile
+                messages.error(request, 'User profile not found.')
+                return HttpResponseRedirect(reverse('login'))
+        else:
+            messages.error(request, 'Login failed. Please check your username and password.')
+            return HttpResponseRedirect(reverse('login'))
+            
+    else:
+        form = AuthenticationForm()
+        return render(request, 'login.html', {'form': form})
+    # if request.method == 'POST':
+    #     username = request.POST['username']
+    #     password = request.POST['password']
+    #     user = authenticate(request, username=username, password=password)
+    #     form = user.userprofile
+    #     user_type = user.userprofile.user_type
+    #     print(user_type)
+    #     if user_type == 'worker':
            
-            if user is not None:
-                login(request, user)
-                messages.success(request, 'Logged in succesfully !!')
+    #         if user is not None:
+    #             login(request, user)
+    #             messages.success(request, 'Logged in succesfully !!')
                 
 
-            return HttpResponseRedirect(reverse('worker_details', args=[user.userprofile.pk]))
+    #         return HttpResponseRedirect(reverse('worker_details', args=[user.userprofile.pk]))
 
-        elif user_type == 'customer':
-            if user is not None:
-                    login(request, user)
-                    messages.success(request, 'Logged in succesfully !!')
-            return HttpResponseRedirect(reverse('client_profile', args=[user.userprofile.pk]))
+    #     elif user_type == 'customer':
+    #         if user is not None:
+    #                 login(request, user)
+    #                 messages.success(request, 'Logged in succesfully !!')
+    #         return HttpResponseRedirect(reverse('client_profile', args=[user.userprofile.pk]))
         
        
-    else:
-        form=AuthenticationForm()
-        return render(request, 'login.html',{'form':form})
+    # else:
+    #     form=AuthenticationForm()
+    #     return render(request, 'login.html',{'form':form})
 
 
 
@@ -66,9 +95,9 @@ def user_login (request):
 @login_required(login_url="/index")
 def user_logout(request):
     logout(request)
-    return HttpResponseRedirect('/login/')
+    # return HttpResponseRedirect('/index/')
 
-    # return HttpResponseRedirect(reverse("login"))
+    return HttpResponseRedirect(reverse("index"))
     
    
 def index(request):
@@ -193,9 +222,32 @@ def workerlists(request):
     return render(request, "worker_lists.html", { "workers": workers, "page_obj": page_obj})
 
     
-    
+@login_required(login_url="/index")
+def update_worker_service(request, pk):
+    service = get_object_or_404(WorkerProfile, pk=pk)
+    # if service.profile.user != request.user:
+    #     return HttpResponseForbidden("You don't have permission to edit this service.")
+
+    if request.method == 'POST':
+        service.service = request.POST.get('service')
+        service.price_per_day = request.POST.get('price_per_day')
+        service.description = request.POST.get('description')
+        service.experiance = request.POST.get('experiance')
+        service.available_time = request.POST.get('available_time')
+        service.save()
+
+        messages.success(request, 'Service updated successfully!')
+        return HttpResponseRedirect(reverse('worker_details', args=[service.profile.pk]))
+
+    return render(request, 'update_worker_service.html', {'service': service})
 
 
+def delete(request, pk):
+    service = get_object_or_404(WorkerProfile, pk=pk)
+    service.delete() 
+    return HttpResponseRedirect(reverse('worker_details', args=[service.profile.pk]))
+
+ 
 def about(request):
     return HttpResponse("This is about page")
 

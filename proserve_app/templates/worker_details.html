@@ -67,12 +67,20 @@
             <p>Price per Day: Rs.{{ profile.price_per_day }} </p>
             <p>Available Time: {{ profile.available_time }}</p>
             <br>
+          <div><a href="{% url 'update_worker_service' profile.pk %}" class="btn btn-primary">Update Profile</a></div>          
+          <div><a href="{% url 'delete' profile.pk %}" class="btn btn-primary">Delete Profile</a></div>
+
+
+          {% comment %} <div><a href="{% url 'update_worker_service' profile.profile.pk %}" class="btn btn-primary">Update Profile</a></div> {% endcomment %}
+
            
            
             {% endfor %}
         </div>
         <div class="worker-image">
-          <div><a href="{% url 'worker_profile' user_profile.pk %}" class="btn btn-primary">Update Profile</a></div>
+
+          
+          <div><a href="{% url 'worker_profile' user_profile.pk %}" class="btn btn-primary">Add service</a></div>
             <figure><img src="{% static 'images/index.jpg'%}" alt="sing up image"></figure>
         </div>
     </div>
