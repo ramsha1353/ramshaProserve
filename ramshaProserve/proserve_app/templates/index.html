@@ -1,0 +1,33 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block page_links %}
+    <link rel="stylesheet" href="{% static 'css/newstyle.css' %}">
+{% endblock %}
+{% block page_title %}
+    Home
+{% endblock %}
+<style>
+body {
+    background-image: url("/static/images/background.png");
+    background-size: 100%;
+}
+
+</style>
+{% block page_body %}
+    {% include "includes/header.html" %}
+        
+        <div class="main">
+        <h1>  <strong>Proserve web application </strong></h1>
+        <p> Lets make your life easy and simple. <p>              
+        <br/>
+        
+      
+            <div class="form-group form-button">
+            <input type="button" class="formsubmit"  value="Become a Worker " onclick="location.href='{% url 'signup' %}'"> 
+            <input type="button"class="formsubmit"  value="Hire a Worker " onclick="location.href='{% url 'workerlists' %}'">
+            </div>
+         </div>
+       
+{% include 'includes/footer.html' %}
+
+{% endblock %}

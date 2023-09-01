@@ -1,0 +1,63 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block page_links %}
+    <link rel="stylesheet" href="{% static 'css/newstyle.css' %}">
+{% endblock %}
+{% block page_title %}
+    Home
+{% endblock %}
+{% block page_body %}
+    {% include "includes/header.html" %}
+    <h3>Services:</h3>
+    <ul>
+       
+        <ul>
+            {% for work_profile in work_profile %}
+                <li>{{ work_profile.service }} - {{ work_profile.description }} -  {{ work_profile.experiance }} - {{ work_profile.available_time }} - {{ work_profile.price_per_day }}</li>
+            {% endfor %}
+       
+        
+    </ul>
+
+    {% if error_message %}<p><strong>{{ error_message }}</strong></p>{% endif %}
+    {% if work_profile.count < 5 %}
+    <form action="{% url 'worker_profile' user_profile.pk %}" method="post">
+        {% csrf_token %}
+        
+        <label for="service">Service:</label>
+        <select name="service" id="service" class="form-control" required>
+            <option value="plumber">Plumber</option>
+            <option value="nurse">Nurse</option>
+            <option value="electrician">Electrician</option>
+        </select>
+        
+        <label for="description">Description:</label>
+        <input type="text" name="description">
+        
+        <label for="experiance">Experience:</label>
+        <input type="text" name="experiance">
+        
+        <label for="available_time">Available Time:</label>
+        <input type="text" name="available_time">
+        
+        <label for="price_per_day">Price per Day (Rs.):</label>
+        <input type="text" name="price_per_day">
+        
+        <input type="submit" value="Add Service">
+    </form>
+    {% else %}
+    <p>You have reached the maximum limit of services. You cannot add more services.</p>
+    {% endif %}
+    
+        {% if messages %}
+        {%for message in messages%}
+        <small {% if message.tags %} class= "{{message.tags}}" 
+            {%endif%}> {{message}}
+        </small>
+        {% endfor %}
+        {%endif%}    
+  
+     
+
+    {% include 'includes/footer.html' %}
+{% endblock %}

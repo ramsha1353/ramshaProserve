@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block page_links %}
+    <link rel="stylesheet" href="{% static 'css/newstyle.css' %}">
+{% endblock %}
+
+{% block page_title %}
+    about
+{% endblock %}
+
+{% block page_body %}
+    {% include "includes/header.html" %}
+    <h1> Welcome to Proserve web application. we will provide you different services and make your life easier. </h1>
+    {% include 'includes/footer.html' %}
+{% endblock %}

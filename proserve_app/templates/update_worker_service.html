@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+{%load static%}
+{% block page_title %}
+    Update Service
+{% endblock %}
+{% block page_body %}
+    {% include "includes/header.html" %}
+    <h1>Update Service</h1>
+    <form method="post">
+        {% csrf_token %}
+        <label for="service">Service:</label>
+        <input type="text" name="service" value="{{ service.service }}">
+        <label for="price_per_day">Price per Day (Rs.):</label>
+        <input type="text" name="price_per_day" value="{{ service.price_per_day }}">
+        <label for="description">Description:</label>
+        <textarea name="description">{{ service.description }}</textarea>
+        <label for="experiance">Experience:</label>
+        <input type="text" name="experiance" value="{{ service.experiance }}">
+        <label for="available_time">Available Time:</label>
+        <input type="text" name="available_time" value="{{ service.available_time }}">
+        <button type="submit">Update</button>
+    </form>
+    {% include 'includes/footer.html' %}
+{% endblock %}

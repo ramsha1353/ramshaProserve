@@ -1,0 +1,55 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block page_links %}
+    <link rel="stylesheet" href="{% static 'css/newstyle.css' %}">
+{% endblock %}
+{% block page_title %}
+    Home
+{% endblock %}
+{% block page_body %}
+    {% include "includes/header.html" %}
+    <section class="signup">
+      <div class="container">
+          <div class="signup-content">
+              <h2 class="form-title">{{ user_profile.user.username }}</h2>
+              <div class="signup-form">
+                  <div  class= 'main_div'>
+  
+    
+      
+                    
+                    <div>
+                      <form method="GET" action="{% url 'workerlists' %}">
+                          <label for="service_search">Search by Service:</label>
+                          <input type="text" id="service_search" name="service_search" value="{{ request.GET.service_search }}"> 
+                          <button type="submit">Search</button>
+                      </form>
+                  </div> 
+        {% comment %} <label for="service_search">Search by Service:</label> {% endcomment %}
+
+        {% comment %} <input type="text" id="service_search" name="service_search" value="{{ request.GET.service_search }}">
+        <button type="submit">Search</button> {% endcomment %}
+      </form>
+
+      
+        
+        {% for worker in workers %}
+        <div class="worker-block">
+        
+          <p></p>
+          <p>Username: {{ worker.profile.user.username }}</p>
+          <p>Service: {{ worker.service }}</p>
+          <p>Description: {{ worker.description }}</p>
+          <p>Experience: {{ worker.experience }}</p>
+          <p>Price per Day: {{ worker.price_per_day }}</p>
+          <p>Available Time: {{ worker.available_time }}</p>
+        </div>
+
+        {% endfor %}
+      
+      
+      <p>{{ user_profile.Address }}{{ user_profile.gender }}</p>
+    </div>
+{% include 'includes/footer.html' %}
+
+{% endblock%}

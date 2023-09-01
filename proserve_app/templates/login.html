@@ -1,0 +1,109 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block page_links %}
+    <link rel="stylesheet" href="{% static 'css/newstyle.css' %}">
+{% endblock %}
+
+{% block page_title %}
+    Home
+{% endblock %}
+
+{% block page_body %}
+    {% include "includes/header.html" %}
+    <div class="main">
+        <section class="signup">
+            <div class="container">
+                <div class="signup-content">
+                    <h2 class="form-title">Login</h2>
+                    <div class="signup-form">
+                        <div class='main_div'>
+                            {% if messages %}
+    <ul class="messages">
+        {% for message in messages %}
+            <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+        {% endfor %}
+    </ul>
+{% endif %}
+
+                            <form class="login-form" action="{% url 'login' %}" method="post" novalidate>
+                                {% csrf_token %}
+                                
+                                {% if form.non_field_errors %}
+                                    {% for error in form.non_field_errors %}
+                                        <p class='error'> {{ error }}</p><br/>
+                                    {% endfor %}
+                                {% endif %}
+                                
+                                {% for field in form %}
+                                    <div class="form-group">
+                                        {{ field.label_tag }}
+                                        {{ field }}
+                                        {% if field.errors %}
+                                            <ul class="errorlist">
+                                                {% for error in field.errors %}
+                                                    <li class='error'>{{ error }}</li>
+                                                {% endfor %}
+                                            </ul>
+                                        {% endif %}
+                                    </div>
+                                {% endfor %}
+                                
+                                <div class="form-group form-button">
+                                    <input type="submit" name="login" id="login" class="form-submit" value="Login">
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+    {% include 'includes/footer.html' %}
+{% endblock %}
+
+
+{% comment %} {% block page_links %}
+    <link rel="stylesheet" href="{% static 'css/newstyle.css' %}">
+{% endblock %}
+{% block page_title %}
+    Home
+{% endblock %}
+{% block page_body %}
+    {% include "includes/header.html" %}
+        <div class="main">
+
+            
+            <section class="signup">
+                <div class="container">
+                    <div class="signup-content">
+                        <h2 class="form-title">Login</h2>
+                        <div class="signup-form">
+                            <div  class= 'main_div'>
+                            <form class = "login-form" action="{% url 'login' %}" method="post" novalidate>
+                                {% csrf_token %}
+                                
+                                {% if form.non_field_errors%}
+                                {% for error in form.non_field_errors %}
+                                 <p class= 'error'> {{error}}</p><br/>
+
+                                {% endfor%}
+                                {%endif%}
+                                {% for form in form %}
+                                {{form.label_tag}} {{form}} {{form.errors|striptags}} <br/><br/>
+                                {%endfor%}
+                                <div class="form-group form-button">
+                                    <input type="submit" name="login" id="login" class="form-submit" value="Login">
+
+                                </div>
+                                
+                             </form> 
+                        </div> 
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+    {% include 'includes/footer.html' %}
+
+
+{% endblock %} {% endcomment %}

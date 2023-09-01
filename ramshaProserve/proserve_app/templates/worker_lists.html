@@ -1,0 +1,64 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block page_links %}
+    <link rel="stylesheet" href="{% static 'css/newstyle.css' %}">
+{% endblock %}
+{% block page_title %}
+    Home
+{% endblock %}
+{% block page_body %}
+    {% include "includes/header.html" %}
+
+    <strong><div class = "errors" id="error-container">
+        {% if error_message %}
+        <p>{{ error_message }}</p>
+        {% endif %}</div></strong>
+    
+
+    {% comment %}  serach by service  {% endcomment %}
+    <div>
+        <form method="GET" action="{% url 'workerlists' %}">
+            <label for="service_search">Search by Service:</label>
+            <input type="text" id="service_search" name="service_search" value="{{ request.GET.service_search }}"> 
+            <button type="submit">Search</button>
+        </form>
+    </div> 
+    {% comment %} worker lists {% endcomment %}
+   
+   
+          
+      
+       
+        {% comment %} {% for worker in workers %} {% endcomment %}
+        {% for worker in page_obj %}
+            <div class="worker-block">
+            
+              
+                <p>Username: {{ worker.profile.user.username }}</p>
+                <p>Service: {{ worker.service }}</p>
+                <p>Description: {{ worker.description }}</p>
+                <p>Experience: {{ worker.experiance }}</p>
+                <p>Price per Day: Rs.{{ worker.price_per_day }}</p>
+                <p>Available Time: {{ worker.available_time }}</p>
+                <p>Phone Number: {{ worker.profile.phone_no }}</p>
+            
+
+            </div>
+            {% endfor %}
+
+        {% comment %} {% endfor %} {% endcomment %}
+    
+
+            <script>  var errorContainer = document.getElementById('error-container');
+
+                // Display the error container if it's not hidden
+                if (errorContainer.style.display !== 'none') {
+                    // Set a timeout to hide the error container after 3 seconds
+                    setTimeout(function() {
+                        errorContainer.style.display = 'none';
+                    }, 3000); // 3000 milliseconds = 3 seconds
+                }
+            </script>
+            {% include "includes/paginator.html" %}
+        {% include 'includes/footer.html' %}
+  {%endblock%}
