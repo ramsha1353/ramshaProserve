@@ -1,0 +1,40 @@
+{% extends 'base.html' %}
+{%load static%}
+{% block page_title %}
+    Update Service
+{% endblock %}
+{% block page_body %}
+    {% include "includes/header.html" %}
+    <h1>Update Service</h1>
+    <form method="post">
+        {% csrf_token %}
+        <fieldset>
+            <legend> <h1> Add service </h1></legend>
+        <div class="worker-block">
+            
+        <label for="service">Service:</label>
+        <select name="service" id="service" class="form-control" required>
+            <option value="plumber">Plumber</option>
+            <option value="nurse">Nurse</option>
+            <option value="gardener">Gardener</option>
+            <option value="made">Made</option>
+            <option value="electrician">Electrician</option>
+        </select>
+        <br/> <br/>
+       
+        <label for="price_per_day">Price per Day (Rs.):</label>
+        <input type="text" name="price_per_day" value="{{ service.price_per_day }}"> <br/> <br/>
+        <label for="description">Description:</label>
+        <textarea name="description">{{ service.description }}</textarea> <br/> <br/>
+        <label for="experiance">Experience:</label>
+        <input type="text" name="experiance" value="{{ service.experiance }}"> <br/> <br/>
+        <label for="available_time">Available Time:</label>
+        <input type="text" name="available_time" value="{{ service.available_time }}"> <br/> <br/>
+        <button type="submit">Update</button>
+    </div>
+</fieldset>
+    </form>
+
+
+    {% include 'includes/footer.html' %}
+{% endblock %}

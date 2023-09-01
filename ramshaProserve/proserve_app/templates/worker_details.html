@@ -1,0 +1,117 @@
+{% extends 'base.html' %}
+
+
+
+{% load static %}
+{% block page_links %}
+    <link rel="stylesheet" href="{% static 'css/newstyle.css' %}">
+{% endblock %}
+{% block page_title %}
+    Worker Details
+{% endblock %}
+{% block page_body %}
+    {% include "includes/header.html" %}
+
+    {% block content %}
+    <div class="worker-content">
+        <div class="worker-form">
+            
+            <h1>welcome  {{ user_profile.user.username }}</h1>
+            <br/>
+            {% for profile in work_profile %}
+            <div class="worker-block">
+            <p>Service: {{ profile.service }}</p>
+            <p>Description: {{ profile.description }}</p>
+            <p>Phone: {{ user_profile.phone_no }}</p>
+            <p>Price per Day: Rs.{{ profile.price_per_day }} </p>
+            <p>Available Time: {{ profile.available_time }}</p>
+            <p>Experience: {{ profile.experiance }}</p>
+            <br>
+          <div><a href="{% url 'update_worker_service' profile.pk %}" class="btn btn-primary">Update Profile</a></div>          
+          <div><a href="{% url 'delete' profile.pk %}" class="btn btn-primary">Delete Profile</a></div>
+            </div>
+
+
+          {% comment %} <div><a href="{% url 'update_worker_service' profile.profile.pk %}" class="btn btn-primary">Update Profile</a></div> {% endcomment %}
+
+           
+           
+            {% endfor %}
+            <div class="form-group form-button">
+                <input type="button" class="formsubmit"  value="Add service " onclick="location.href='{% url 'worker_profile' user_profile.pk %}'"> 
+            </div>
+        </div>
+       
+        
+
+          
+          
+       
+ 
+    {% endblock %}
+    {% comment %} {% include 'includes/footer.html' %} {% endcomment %}
+{% endblock %}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+{% comment %} {% extends 'base.html' %}
+{% load static %}
+{% block page_links %}
+    <link rel="stylesheet" href="{% static 'css/newstyle.css' %}">
+{% endblock %}
+{% block page_title %}
+    Worker Details
+{% endblock %}
+<block style>
+  
+{% block page_body %}
+    {% include "header.html" %}
+
+   {% block content %}
+      <div class="worker-content">
+        <div class="worker-form">
+          <p>Username: {{ username }}</p>
+          <br/>
+          <p>Service: {{ work_profile.service }}</p>
+          <p>Description: {{ work_profile.description }}</p>
+          <p>Phone: {{ work_profile.profile.phone_no }}</p>
+          <p>Price per Day: Rs.{{ work_profile.price_per_day }} </p>
+          <p>Available Time: {{ work_profile.available_time }}</p>
+
+        </div>
+
+        <div class="worker-image">
+
+          <figure><img src="{% static 'images/index.jpg'%}" alt="sing up image"></figure>
+          <p>Profile PK: {{ work_profile.profile.pk }}</p>
+          <div><a href="{% url 'worker_profile' work_profile.profile.pk %}" class="btn btn-primary">Update Profile</a></div>
+
+        </div>
+      </div>
+  {% endblock %}
+  {% include 'footer.html' %}
+{% endblock %} {% endcomment %}

@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block page_links %}
+    <link rel="stylesheet" href="{% static 'css/newstyle.css' %}">
+{% endblock %}
+
+{% block page_title %}
+    Home
+{% endblock %}
+
+{% block page_body %}
+    {% include "includes/header.html" %}
+    <h1> you can contact us by sending email at ramshajaved1353@gmail.com </h1>
+    {% include 'includes/footer.html' %}
+{% endblock %}

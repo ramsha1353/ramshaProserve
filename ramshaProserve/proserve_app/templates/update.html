@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+{% block page_title %}
+    Update Worker Profile
+{% endblock %}
+{% block page_body %}
+    {% include "header.html" %}
+    <h1>Update Worker Profile</h1>
+    <form method="post">
+        {% csrf_token %}
+        <label for="phone_no">Phone Number:</label>
+        <input type="text" name="phone_no" value="{{ user_profile.phone_no }}">
+        <button type="submit">Update</button>
+    </form>
+    {% include 'footer.html' %}
+{% endblock %}
